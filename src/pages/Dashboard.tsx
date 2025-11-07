@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { BookOpen, Users, Video } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import RoomCard from "@/components/RoomCard";
 import CreateRoomDialog from "@/components/CreateRoomDialog";
 import heroImage from "@/assets/hero-study.jpg";
@@ -51,19 +53,35 @@ const Dashboard = () => {
   };
   return (
     <div className="min-h-screen">
+      {/* Header */}
+      <motion.header
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        className="glass border-b border-border/50"
+      >
+        <div className="container mx-auto px-6 py-4 flex items-center justify-between">
+          <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            StudySync
+          </h1>
+          <Link to="/auth">
+            <Button variant="outline">Sign In</Button>
+          </Link>
+        </div>
+      </motion.header>
+
       {/* Hero Section */}
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         className="relative h-[400px] overflow-hidden"
       >
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${heroImage})` }}
         >
           <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/60 to-background" />
         </div>
-        
+
         <div className="relative container mx-auto px-6 h-full flex flex-col justify-center items-center text-center">
           <motion.div
             initial={{ y: 30, opacity: 0 }}
@@ -71,13 +89,13 @@ const Dashboard = () => {
             transition={{ delay: 0.2 }}
             className="space-y-6"
           >
-            <h1 className="text-6xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              StudySync
-            </h1>
+            <h2 className="text-6xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              Collaborate & Learn
+            </h2>
             <p className="text-xl text-muted-foreground max-w-2xl">
-              Collaborate, learn, and grow together in real-time study sessions
+              Join real-time study sessions with peers around the world
             </p>
-            
+
             <div className="flex gap-8 justify-center mt-8">
               <div className="flex items-center gap-2 text-foreground/80">
                 <Users className="w-5 h-5 text-primary" />
